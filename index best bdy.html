@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love Aazeen 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body{
+font-family:Poppins;
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#ffeef2,#ffd6e7,#fff0f5);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* CURSOR */
+.cursor{
+position:fixed;
+width:20px;
+height:20px;
+border-radius:50%;
+background:rgba(255,105,180,0.7);
+pointer-events:none;
+z-index:9999;
+}
+
+/* PAGE */
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.page.active{ display:flex; }
+
+.container{
+background:rgba(255,255,255,0.6);
+padding:50px;
+border-radius:25px;
+max-width:850px;
+width:90%;
+text-align:center;
+backdrop-filter:blur(10px);
+}
+
+h1{
+font-family:'Dancing Script';
+font-size:3rem;
+color:#ff1493;
+margin-bottom:20px;
+}
+
+.content{
+font-size:1.2rem;
+line-height:2;
+color:#444;
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#ff69b4;
+color:white;
+cursor:pointer;
+}
+
+/* HEARTS */
+.heart{
+position:absolute;
+font-size:18px;
+animation:fall 8s linear;
+}
+@keyframes fall{
+0%{transform:translateY(-10%);opacity:0}
+10%{opacity:1}
+100%{transform:translateY(110vh);opacity:0}
+}
+
+/* 🌸 PINK PETALS */
+.petal{
+position:absolute;
+font-size:18px;
+animation:fallPink 10s linear;
+}
+@keyframes fallPink{
+0%{transform:translateY(-10%) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* 💜 PURPLE PETALS */
+.purple{
+position:absolute;
+font-size:18px;
+animation:fallPurple 9s linear;
+}
+@keyframes fallPurple{
+0%{transform:translateY(-10%) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* KISS */
+#kiss{
+position:fixed;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+font-size:10rem;
+background:rgba(255,182,193,0.9);
+z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+<div id="kiss">💋</div>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+<div class="container">
+<h1>My Love 💖</h1>
+<div class="content" style="font-size: 32px; line-height: 1.2; font-weight: 600; text-align: center; max-width: 600px; margin: 0 auto;">
+You are my peace, my happiness, and my forever light ✨<br><br>
+In your love, I found a place I can truly call home 💖<br><br>
+Your smile brightens even my darkest days ☀️<br><br>
+I cherish every little thing about you more than words can say 💕<br><br>
+With you, my world feels complete and full of love ❤️<br><br>
+I will always choose you, today, tomorrow, and forever 🤍
+</div>
+<button onclick="next()">Next ➡️</button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+<div class="container">
+<h1>Promises 💍</h1>
+<div class="content">
+I will always stay with you 🤍<br><br>
+Through every moment, good or bad 💫<br><br>
+My heart belongs to you forever 💖<br><br>
+You are my forever ♡
+</div>
+<button onclick="next()">Next ➡️</button>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+<div class="container">
+<h1>Happy Birthday 🎂</h1>
+
+<h2 id="name" style="color:#ff1493;"></h2>
+
+<div class="content">
+Aazeen Ali, happy birthday my love 🎂❤️
+You make my life brighter with your smile every day ✨
+I’m really lucky to have you in my life 💖
+May your day be full of happiness, love, and beautiful moments 🎉💫
+</div>
+
+<button onclick="kiss()">Kiss Me 💋</button>
+</div>
+</div>
+
+<script>
+let page=1;
+
+/* ✅ FIXED PAGE SWITCH */
+function next(){
+document.getElementById("p"+page).classList.remove("active");
+page++;
+if(page>3) return;
+document.getElementById("p"+page).classList.add("active");
+
+if(page==3) typeName();
+}
+
+/* NAME TYPE */
+function typeName(){
+let text="Aazeen Ali";
+let i=0;
+let el=document.getElementById("name");
+
+let t=setInterval(()=>{
+el.innerHTML=text.slice(0,i);
+i++;
+if(i>text.length) clearInterval(t);
+},150);
+}
+
+/* KISS */
+function kiss(){
+let k=document.getElementById("kiss");
+k.style.display="flex";
+setTimeout(()=>k.style.display="none",2000);
+}
+
+/* CURSOR */
+document.addEventListener("mousemove",(e)=>{
+let c=document.querySelector(".cursor");
+c.style.left=e.clientX+"px";
+c.style.top=e.clientY+"px";
+});
+
+/* HEARTS */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+},300);
+
+/* 🌸 PINK PETALS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌸";
+p.style.left=Math.random()*100+"vw";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+},350);
+
+/* 💜 PURPLE PETALS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="purple";
+p.innerHTML="💜";
+p.style.left=Math.random()*100+"vw";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+},500);
+
+</script>
+
+</body>
+</html>
